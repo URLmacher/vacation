@@ -1,18 +1,39 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div class="home__calendar-grid">
+      <Calendar
+        :month="4"
+        :year="2021"
+      />
+      <Calendar
+        :month="5"
+        :year="2021"
+      />
+
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import Calendar from '@/components/Calendar.vue';
 
-export default defineComponent({
+export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Calendar
   }
-})
+};
 </script>
+<style scoped lang="scss">
+.home {
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 24px;
+
+  &__calendar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 24px;
+  }
+}
+</style>
