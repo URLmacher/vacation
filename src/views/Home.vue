@@ -2,27 +2,29 @@
   <div class="home">
     <div class="home__calendar-grid">
       <Calendar
-        :month="4"
-        :year="2021"
+        v-for="month of vacationMonths"
+        :key="month"
+        :month="month"
+        :year="vacationYear"
       />
-      <Calendar
-        :month="5"
-        :year="2021"
-      />
-
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Calendar from '@/components/Calendar.vue';
+import { defineComponent } from 'vue';
+import { vacationMonths, vacationYear } from '@/data/data';
 
-export default {
+export default defineComponent({
   name: 'Home',
   components: {
     Calendar
+  },
+  setup() {
+    return { vacationMonths, vacationYear };
   }
-};
+});
 </script>
 <style scoped lang="scss">
 .home {

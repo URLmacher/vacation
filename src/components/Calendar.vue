@@ -4,7 +4,10 @@
     <div
       v-for="dayOfMonth of daysOfMonth"
       class="calendar__day"
-      :class="`calendar__day--${dayOfMonth.dayName}`"
+      :class="[
+      `calendar__day--${dayOfMonth.dayName}`,
+      `calendar__day--${getHolidayClass(dayOfMonth.momentOfDay)}`
+      ]"
       :key="dayOfMonth.day"
     >
       <h3 class="calendar__day-name">{{dayOfMonth.day}}</h3>
@@ -14,7 +17,10 @@
 
 <script lang="ts">
 import Moment from 'moment';
+import { DateHelper } from '@/helpers/DateHelper';
 import { ref, defineComponent, computed, ComputedRef } from 'vue';
+
+const dateHelper = new DateHelper();
 
 export default defineComponent({
   props: {
@@ -23,32 +29,21 @@ export default defineComponent({
   },
   setup(props: { month: number; year: number }) {
     const monthName: ComputedRef<string> = computed(() => {
-      return Moment(`${props.month}`, 'M').format('MMMM');
+      return dateHelper.getMonthName(props.month);
     });
 
-    const getMonth = (month: number, year: number): IDaysOfMonth[] => {
-      const daysOfMonth: IDaysOfMonth[] = [];
-      const daysInMonth = Moment(`${month}-${year}`, 'M-YY').daysInMonth();
-      for (let i = 1; i < daysInMonth + 1; i++) {
-        const momentOfDay = Moment(`${i}-${month}-${year}`, 'D-M-YY');
-        daysOfMonth.push({
-          day: i,
-          momentOfDay,
-          dayName: momentOfDay.format('dddd').toLowerCase()
-        });
-      }
-      return daysOfMonth;
+    const getHolidayClass = (date: Moment.Moment): string => {
+      return dateHelper.isHoliday(date) ? 'is-holiday' : '';
     };
-    const daysOfMonth = ref(getMonth(props.month, props.year));
-    return { daysOfMonth, monthName };
+
+    const daysOfMonth = ref(dateHelper.getMonth(props.month, props.year));
+    return {
+      daysOfMonth,
+      monthName,
+      getHolidayClass
+    };
   }
 });
-
-export interface IDaysOfMonth {
-  momentOfDay: Moment.Moment;
-  dayName: string;
-  day: number;
-}
 </script>
 
 <style scoped lang="scss">
@@ -90,6 +85,9 @@ export interface IDaysOfMonth {
     &--sunday {
       grid-column-start: 7;
       background-color: yellow;
+    }
+    &--is-holiday {
+      background-color: rgb(255, 0, 212);
     }
   }
 }
