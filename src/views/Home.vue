@@ -26,16 +26,22 @@ export default defineComponent({
   }
 });
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .home {
-  max-width: 1280px;
-  margin: auto;
-  padding: 0 24px;
+  @include vacation-container;
 
   &__calendar-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 24px;
+    grid-template-columns: 1fr;
+    grid-gap: var(--content-spacing);
+
+    @include window-medium {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include window-large {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 }
 </style>

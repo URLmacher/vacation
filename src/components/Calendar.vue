@@ -1,6 +1,6 @@
 <template>
   <div class="calendar">
-    <h1 class="calendar__title">{{monthName}}</h1>
+    <h5 class="calendar__title">{{monthName}}</h5>
     <div
       v-for="dayOfMonth of daysOfMonth"
       class="calendar__day"
@@ -10,7 +10,7 @@
       ]"
       :key="dayOfMonth.day"
     >
-      <h3 class="calendar__day-name">{{dayOfMonth.day}}</h3>
+      <h6 class="calendar__day-name">{{dayOfMonth.day}}</h6>
     </div>
   </div>
 </template>
@@ -50,18 +50,22 @@ export default defineComponent({
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: min-content auto;
+  grid-template-rows: min-content repeat(6, 1fr);
   gap: 8px;
 
   &__title {
     grid-column: 1 / -1;
+    text-align: center;
   }
 
   &__day {
     width: 100%;
-    min-height: 50px;
+    height: 50px;
     box-sizing: border-box;
-    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--highlight-one);
 
     &--monday {
       grid-column-start: 1;
@@ -80,14 +84,14 @@ export default defineComponent({
     }
     &--saturday {
       grid-column-start: 6;
-      background-color: yellow;
+      background-color: var(--highlight-two);
     }
     &--sunday {
       grid-column-start: 7;
-      background-color: yellow;
+      background-color: var(--highlight-two);
     }
     &--is-holiday {
-      background-color: rgb(255, 0, 212);
+      background-color: var(--highlight-three);
     }
   }
 }

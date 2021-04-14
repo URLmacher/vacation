@@ -1,0 +1,23 @@
+:root {
+  --highlight-one: #FE979A;
+  --highlight-two: #FFBF98;
+  --highlight-three: #E68AB5;
+  --highlight-four: #8CE387;
+  --content-spacing: 24px;
+  --text-color-strong: #2c3e50;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--text-color-strong);
+}
+
+@mixin vacation-container {
+  max-width: $window-xlarge-min;
+  margin: auto;
+  padding: 0 var(--content-spacing);
+}
