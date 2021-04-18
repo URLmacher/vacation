@@ -18,8 +18,8 @@
 
 <script lang="ts">
 import Moment from 'moment';
-import { DateHelper } from '@/helpers/DateHelper';
-import { ref, defineComponent, computed, ComputedRef } from 'vue';
+import { DateHelper, IDaysOfMonth } from '@/helpers/DateHelper';
+import { ref, defineComponent, computed, ComputedRef, Ref } from 'vue';
 
 const dateHelper = new DateHelper();
 
@@ -41,7 +41,10 @@ export default defineComponent({
       return dateHelper.isVacationDay(date) ? 'is-vacation' : '';
     };
 
-    const daysOfMonth = ref(dateHelper.getMonth(props.month, props.year));
+    const daysOfMonth: Ref<IDaysOfMonth[]> = ref(
+      dateHelper.getMonth(props.month, props.year)
+    );
+
     return {
       daysOfMonth,
       monthName,
