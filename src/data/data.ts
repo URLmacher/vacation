@@ -37,3 +37,4 @@ export const vacationDayDates: string[] = [
   `2021-08-27T00:00:00.000Z`,
   `2021-09-03T00:00:00.000Z`,
 ];
+export const exportCalendarLink = `https://calendar.google.com/calendar/u/1?cid=cGdjZzVudTRqbWw0aHI2amtybmJkb3BrajRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ`;

@@ -30,6 +30,10 @@
         <p>{{getFormattedVacationDayName(vacationDayDate)}}</p>
         <p>{{getFormattedVacationDayDate(vacationDayDate)}}</p>
       </li>
+      <a
+        class="stats__list-sub"
+        :href="exportCalendarLink"
+      >Export</a>
     </ul>
   </div>
 </template>
@@ -40,7 +44,8 @@ import {
   vacationDayDates,
   accumulatedVacationHours,
   vacationDayInHours,
-  lastUpdatedDate
+  lastUpdatedDate,
+  exportCalendarLink
 } from '@/data/data';
 import { DateHelper } from '@/helpers/DateHelper';
 
@@ -72,7 +77,8 @@ export default defineComponent({
       vacationDayInHoursFormatted,
       timeOfLastUpdate,
       getFormattedVacationDayName,
-      getFormattedVacationDayDate
+      getFormattedVacationDayDate,
+      exportCalendarLink
     };
   }
 });
