@@ -29,6 +29,7 @@ export default defineComponent({
 <style lang="scss">
 .home {
   @include vacation-container;
+  margin-top: 40px;
 
   &__calendar-grid {
     display: grid;

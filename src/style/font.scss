@@ -54,3 +54,9 @@ p {
   letter-spacing: 0.5px;
   line-height: 1.27;
 }
+
+small {
+  @include _font(normal, 11px);
+  letter-spacing: 0.5px;
+  line-height: 1.27;
+}

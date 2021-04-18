@@ -31,6 +31,14 @@ export class DateHelper {
   getMonthName(month: number): string {
     return Moment(`${month}`, 'M').format('MMMM');
   }
+
+  formatDate(date: string, format: string): string {
+    return Moment(date).format(format);
+  }
+
+  formatHours(hours: number): string {
+    return hours.toString().replace('.', ',');
+  }
 }
 
 export interface IDaysOfMonth {
