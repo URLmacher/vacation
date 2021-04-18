@@ -1,4 +1,4 @@
-import { vacationHolidayDates } from '@/data/data';
+import { vacationHolidayDates, vacationDayDates } from '@/data/data';
 import Moment from 'moment';
 
 export class DateHelper {
@@ -19,6 +19,12 @@ export class DateHelper {
   isHoliday(date: Moment.Moment): boolean {
     return vacationHolidayDates.some(holiday => {
       return date.isSame(holiday, 'day');
+    });
+  }
+
+  isVacationDay(date: Moment.Moment): boolean {
+    return vacationDayDates.some(vacationDay => {
+      return date.isSame(vacationDay, 'day');
     });
   }
 

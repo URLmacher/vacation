@@ -6,7 +6,8 @@
       class="calendar__day"
       :class="[
       `calendar__day--${dayOfMonth.dayName}`,
-      `calendar__day--${getHolidayClass(dayOfMonth.momentOfDay)}`
+      `calendar__day--${getHolidayClass(dayOfMonth.momentOfDay)}`,
+      `calendar__day--${getVacationDayClass(dayOfMonth.momentOfDay)}`
       ]"
       :key="dayOfMonth.day"
     >
@@ -36,11 +37,16 @@ export default defineComponent({
       return dateHelper.isHoliday(date) ? 'is-holiday' : '';
     };
 
+    const getVacationDayClass = (date: Moment.Moment): string => {
+      return dateHelper.isVacationDay(date) ? 'is-vacation' : '';
+    };
+
     const daysOfMonth = ref(dateHelper.getMonth(props.month, props.year));
     return {
       daysOfMonth,
       monthName,
-      getHolidayClass
+      getHolidayClass,
+      getVacationDayClass,
     };
   }
 });
@@ -92,6 +98,9 @@ export default defineComponent({
     }
     &--is-holiday {
       background-color: var(--highlight-three);
+    }
+    &--is-vacation {
+      background-color: var(--highlight-four);
     }
   }
 }
