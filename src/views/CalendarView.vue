@@ -71,6 +71,7 @@ export default defineComponent({
     justify-content: flex-end;
     grid-gap: 8px;
     align-items: center;
+    margin-bottom: var(--content-spacing);
 
     @include window-small {
       display: flex;

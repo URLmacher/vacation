@@ -1,25 +1,26 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/CalendarView.vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import CalendarView from '../views/CalendarView.vue';
+import Stats from '../views/Stats.vue';
 
-const routes: Array<RouteRecordRaw> = [
+
+export const routes: Array<RouteRecordRaw & { icon: string; }> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'CalendarView',
+    component: CalendarView,
+    icon: 'event'
   },
   {
     path: '/stats',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Stats.vue')
+    name: 'Stats',
+    component: Stats,
+    icon: 'feed'
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;

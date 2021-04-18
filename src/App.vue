@@ -1,19 +1,18 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Kalendar-Ansicht</router-link> |
-    <router-link to="/stats">Daten-Übersicht</router-link>
-  </div>
+  <NavBar />
   <router-view />
 </template>
 
-<style lang="scss">
-#nav {
-  @include vacation-container;
+<script lang="ts">
+import NavBar from '@/components/NavBar.vue';
+import { defineComponent } from 'vue';
 
-  a {
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+export default defineComponent({
+  name: 'CalendarView',
+  components: {
+    NavBar
+  },
+  setup() {}
+});
+</script>
+

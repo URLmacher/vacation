@@ -47,6 +47,17 @@ a {
   @include _font(600, 10px);
   letter-spacing: 1.2px;
   line-height: 1.6;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--highlight-five);
+
+  a:hover {
+    color: var(--highlight-three);
+  }
+  a:active,
+  a:visited {
+    color: var(--text-color-strong);
+  }
 }
 
 p {
