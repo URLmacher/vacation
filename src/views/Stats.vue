@@ -8,7 +8,7 @@
       </li>
       <li class="stats__list-item">
         <p>Urlaubsstunden Guthaben:</p>
-        <p>{{accumulatedVacationHours}}</p>
+        <p>{{accumulatedVacationHours}}*</p>
       </li>
       <li class="stats__list-item">
         <p>Guthaben in Tagen:</p>
