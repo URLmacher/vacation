@@ -46,7 +46,7 @@ export default defineComponent({
       daysOfMonth,
       monthName,
       getHolidayClass,
-      getVacationDayClass,
+      getVacationDayClass
     };
   }
 });
@@ -54,6 +54,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .calendar {
+  @include glass-container;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: min-content repeat(6, 1fr);
@@ -67,32 +68,33 @@ export default defineComponent({
   &__day {
     width: 100%;
     height: 50px;
+    border-radius: var(--border-radius);
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--highlight-one);
 
-    &--monday {
+    &--montag {
       grid-column-start: 1;
     }
-    &--tuesday {
+    &--dienstag {
       grid-column-start: 2;
     }
-    &--wednesday {
+    &--mittwoch {
       grid-column-start: 3;
     }
-    &--thursday {
+    &--donnerstag {
       grid-column-start: 4;
     }
-    &--friday {
+    &--freitag {
       grid-column-start: 5;
     }
-    &--saturday {
+    &--samstag {
       grid-column-start: 6;
       background-color: var(--highlight-two);
     }
-    &--sunday {
+    &--sonntag {
       grid-column-start: 7;
       background-color: var(--highlight-two);
     }

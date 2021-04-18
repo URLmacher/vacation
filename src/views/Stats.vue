@@ -1,7 +1,7 @@
 <template>
   <div class="stats">
     <ul class="stats__list">
-      <h5 class="stats__title">Daten</h5>
+      <h5 class="stats__title">Zusammenfassung</h5>
       <li class="stats__list-item">
         <p>Urlaubstage:</p>
         <p>{{vacationDayDates.length}}</p>
@@ -21,7 +21,10 @@
       <small class="stats__list-sub">*Stand: {{timeOfLastUpdate}}</small>
     </ul>
     <ul class="stats__list">
-      <h5 class="stats__title">Urlaubstermine</h5>
+      <div class="stats__title">
+        <h5>Urlaubstermine</h5>
+        <a :href="exportCalendarLink">Export</a>
+      </div>
       <li
         class="stats__list-item"
         v-for="vacationDayDate in vacationDayDates"
@@ -30,10 +33,6 @@
         <p>{{getFormattedVacationDayName(vacationDayDate)}}</p>
         <p>{{getFormattedVacationDayDate(vacationDayDate)}}</p>
       </li>
-      <a
-        class="stats__list-sub"
-        :href="exportCalendarLink"
-      >Export</a>
     </ul>
   </div>
 </template>
@@ -87,24 +86,26 @@ export default defineComponent({
 .stats {
   @include vacation-container;
 
-  &__title {
-    margin-bottom: 16px;
-  }
-
   &__list {
+    @include glass-container;
     display: flex;
     flex-direction: column;
     max-width: 400px;
     list-style: none;
-    padding: 0;
     margin: 40px auto var(--content-spacing) auto;
+  }
+
+  &__title {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__list-item {
     display: flex;
     justify-content: space-between;
-    padding: 0;
-    padding-bottom: 4px;
+    padding: 4px 0;
     border-bottom: 1px solid var(--border-color);
   }
 

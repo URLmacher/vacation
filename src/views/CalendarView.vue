@@ -7,15 +7,23 @@
         :month="month"
         :year="vacationYear"
       />
-      <div class="calendar-view__legend">
+    </div>
+    <div class="calendar-view__legend">
+      <div class="calendar-view__legend-row">
         <div class="calendar-view__legend-item"></div>
-        <p class="calendar-view__legend-description">Arbeitstag</p>
+        <p>Arbeitstag</p>
+      </div>
+      <div class="calendar-view__legend-row">
         <div class="calendar-view__legend-item calendar-view__legend-item--weekend"></div>
-        <p class="calendar-view__legend-description">Wochendende</p>
+        <p>Wochendende</p>
+      </div>
+      <div class="calendar-view__legend-row">
         <div class="calendar-view__legend-item calendar-view__legend-item--holiday"></div>
-        <p class="calendar-view__legend-description">Feiertag</p>
+        <p>Feiertag</p>
+      </div>
+      <div class="calendar-view__legend-row">
         <div class="calendar-view__legend-item calendar-view__legend-item--vacation"></div>
-        <p class="calendar-view__legend-description">Urlaubstag</p>
+        <p>Urlaubstag</p>
       </div>
     </div>
   </div>
@@ -57,16 +65,27 @@ export default defineComponent({
   }
 
   &__legend {
+    @include glass-container;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    max-width: 169px;
+    justify-content: flex-end;
+    grid-gap: 8px;
     align-items: center;
-    gap: 8px;
+
+    @include window-small {
+      display: flex;
+    }
+  }
+
+  &__legend-row {
+    display: flex;
+    align-items: center;
   }
 
   &__legend-item {
     height: 30px;
     width: 30px;
+    margin: 0 8px;
     background-color: var(--highlight-one);
     &--weekend {
       background-color: var(--highlight-two);
