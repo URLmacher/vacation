@@ -65,7 +65,8 @@ export default defineComponent({
 
   &__title {
     grid-column: 1 / -1;
-    text-align: center;
+    text-align: right;
+    margin-bottom: 8px;
   }
 
   &__day {

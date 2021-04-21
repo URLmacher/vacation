@@ -28,6 +28,7 @@ export default defineComponent({
 .nav-bar {
   @include vacation-container;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: 16px;
 
