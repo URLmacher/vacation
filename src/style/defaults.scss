@@ -25,6 +25,7 @@ body,
 html {
   background: var(--highlight-three);
   background: linear-gradient(0deg, var(--highlight-three) 0%, var(--highlight-two) 50%, var(--highlight-one) 100%);
+  min-height: 100%;
 }
 
 @mixin vacation-container {
@@ -41,4 +42,8 @@ html {
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
   padding: 16px;
+}
+
+.apexcharts-toolbar {
+  display: none !important;
 }

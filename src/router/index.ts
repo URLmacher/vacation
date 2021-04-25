@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import CalendarView from '../views/CalendarView.vue';
 import Stats from '../views/Stats.vue';
+import Graphs from '../views/Graphs.vue';
 
 
 export const routes: Array<RouteRecordRaw & { icon: string; }> = [
@@ -15,6 +16,12 @@ export const routes: Array<RouteRecordRaw & { icon: string; }> = [
     name: 'Stats',
     component: Stats,
     icon: 'feed'
+  },
+  {
+    path: '/graphs',
+    name: 'Graphs',
+    component: Graphs,
+    icon: 'analytics'
   }
 ];
 

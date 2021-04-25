@@ -39,17 +39,21 @@ export default defineComponent({
   &__links {
     display: grid;
     gap: 16px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   &__button {
     @include glass-container;
-    padding: 16px;
+    padding: 8px;
     background-color: var(--glass-active);
     transition: background-color 0.3s linear;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include window-medium {
+      padding: 16px;
+    }
   }
 
   .router-link-active,

@@ -8,7 +8,7 @@ import NavBar from '@/components/NavBar.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'CalendarView',
+  name: 'App',
   components: {
     NavBar
   },

@@ -1,4 +1,4 @@
-import { vacationHolidayDates, vacationDayDates } from '@/data/data';
+import { vacationHolidayDates, vacationDayDates, vacationMonths, vacationYear } from '@/data/data';
 import Moment from 'moment';
 
 export class DateHelper {
@@ -10,7 +10,11 @@ export class DateHelper {
       daysOfMonth.push({
         day: i,
         momentOfDay,
-        dayName: momentOfDay.format('dddd').toLowerCase()
+        dayName: momentOfDay.format('dddd').toLowerCase(),
+        isHoliday: this.isHoliday(momentOfDay),
+        isVacationDay: this.isVacationDay(momentOfDay),
+        isWeekend: this.isWeekend(momentOfDay),
+        isWorkDay: this.isWorkDay(momentOfDay)
       });
     }
     return daysOfMonth;
@@ -28,6 +32,14 @@ export class DateHelper {
     });
   }
 
+  isWeekend(date: Moment.Moment): boolean {
+    return date.format('dddd') === 'Samstag' || date.format('dddd') === 'Sonntag';
+  }
+
+  isWorkDay(date: Moment.Moment): boolean {
+    return !this.isWeekend(date) && !this.isHoliday(date) && !this.isVacationDay(date);
+  }
+
   getMonthName(month: number): string {
     return Moment(`${month}`, 'M').format('MMMM');
   }
@@ -39,10 +51,39 @@ export class DateHelper {
   formatHours(hours: number): string {
     return hours.toString().replace('.', ',');
   }
+
+  getWholeVacationPeriod(): IDaysOfMonth[][] {
+    const months: IDaysOfMonth[][] = [];
+    for(const vacationMonth of vacationMonths) {
+      months.push(this.getMonth(vacationMonth, vacationYear));
+    }
+    return months;
+  }
+
+  getVacationDayCount(month: number, year: number): number {
+    const daysOfMonth = this.getMonth(month, year);
+    return daysOfMonth.filter(day => day.isVacationDay).length;
+  }
+
+  getWorkDayCount(month: number, year: number): number {
+    const daysOfMonth = this.getMonth(month, year);
+    return daysOfMonth.filter(day => day.isWorkDay).length;
+  }
+
+  getOtherCount(month: number, year: number): number {
+    const daysOfMonth = this.getMonth(month, year);
+    const workDays = this.getWorkDayCount(month, year);
+    const vacationDays = this.getVacationDayCount(month, year);
+    return daysOfMonth.length - workDays - vacationDays;
+  }
 }
 
 export interface IDaysOfMonth {
   momentOfDay: Moment.Moment;
   dayName: string;
   day: number;
+  isHoliday: boolean;
+  isVacationDay: boolean;
+  isWeekend: boolean;
+  isWorkDay: boolean;
 }
