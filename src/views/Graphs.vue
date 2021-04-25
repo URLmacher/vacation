@@ -13,6 +13,7 @@
         :emojisRight="[`👨🏻‍💻`,`👨🏻‍💻`,`👨🏻‍💻`]"
       />
     </div>
+    <LinkList />
   </div>
 </template>
 
@@ -20,12 +21,14 @@
 import { defineComponent } from 'vue';
 import TimeAllocationChart from '@/components/TimeAllocationChart.vue';
 import MoodChart from '@/components/MoodChart.vue';
+import LinkList from '@/components/LinkList.vue';
 
 export default defineComponent({
   name: 'Graphs',
   components: {
     TimeAllocationChart,
-    MoodChart
+    MoodChart,
+    LinkList
   },
   setup() {
     return {};
@@ -39,6 +42,7 @@ export default defineComponent({
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 8px;
+  margin-bottom: var(--content-spacing);
 
   @include window-medium {
     grid-template-columns: 1fr min-content;
