@@ -33,9 +33,24 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+:root {
+  --mood-chart-font-size:25px;
+}
+
+@include window-medium {
+  :root {
+    --mood-chart-font-size: 55px;
+  }
+}
+
 .mood-chart {
   @include glass-container;
   height: min-content;
+  --mood-chart-font-size: 35px;
+
+  @include window-medium {
+    --mood-chart-font-size: 55px;
+  }
 
   &__title {
     margin-bottom: 16px;
@@ -50,10 +65,11 @@ export default defineComponent({
   &__icon {
     margin: 0 var(--content-spacing);
     font-weight: bold;
+    font-size: var(--mood-chart-font-size);
   }
 
   &__emoji {
-    font-size: 25px;
+    font-size: var(--mood-chart-font-size);
   }
 }
 </style>

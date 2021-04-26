@@ -1,20 +1,24 @@
 <template>
   <div class="time-allocation-chart">
     <h5 class="time-allocation-chart__title">Verteilung</h5>
-    <apexchart
-      type="bar"
-      :options="chartOptions"
-      :series="series"
-    ></apexchart>
+    <div class="time-allocation-chart__scrollbox">
+      <apexchart
+        type="bar"
+        :options="chartOptions"
+        :series="series"
+      ></apexchart>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { DateHelper } from '@/helpers/DateHelper';
+import { ColorHelper } from '@/helpers/ColorHelper';
 import { defineComponent } from 'vue';
 import { vacationMonths, vacationYear } from '@/data/data';
 
 const dateHelper = new DateHelper();
+const colorHelper = new ColorHelper();
 
 export default defineComponent({
   setup() {
@@ -42,8 +46,16 @@ export default defineComponent({
     const chartOptions = {
       chart: {
         stacked: true,
-        stackType: '100%'
+        stackType: '100%',
+        fill: {
+          colors: ['#F44336', '#E91E63', '#9C27B0']
+        }
       },
+      colors: [
+        colorHelper.getColor('--highlight-four'),
+        colorHelper.getColor('--highlight-one'),
+        colorHelper.getColor('--highlight-two')
+      ],
       toolbar: {
         show: false
       },
@@ -52,19 +64,18 @@ export default defineComponent({
           horizontal: true
         }
       },
-      stroke: {
-        width: 0,
-        colors: ['#fff']
-      },
       xaxis: {
         categories: vacationMonths.map(month => dateHelper.getMonthName(month)),
         lines: {
           show: false
         }
       },
-      yaxis: {
-        lines: {
-          show: false
+      grid: {
+        borderColor: colorHelper.getColor('--border-color'),
+        yaxis: {
+          lines: {
+            show: false
+          }
         }
       },
       tooltip: {
@@ -81,6 +92,17 @@ export default defineComponent({
         position: 'top',
         horizontalAlign: 'right',
         offsetX: 10
+      },
+      annotations: {
+        xaxis: [
+          {
+            y: 0,
+            strokeDashArray: 0,
+            borderColor: colorHelper.getColor('--border-color'),
+            borderWidth: 1,
+            opacity: 1
+          }
+        ],
       }
     };
 
@@ -96,5 +118,9 @@ export default defineComponent({
 .time-allocation-chart {
   display: block;
   @include glass-container;
+
+  &__scrollbox {
+    overflow: hidden;
+  }
 }
 </style>

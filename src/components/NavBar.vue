@@ -7,7 +7,7 @@
         v-for="route of routes"
         :key="route.name"
         :to="{name: route.name}"
-      ><span class="material-icons">{{route.icon}}</span></router-link>
+      ><span class="material-icons nav-bar__icon">{{route.icon}}</span></router-link>
     </div>
   </nav>
 </template>
@@ -28,12 +28,13 @@ export default defineComponent({
 .nav-bar {
   @include vacation-container;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-top: 16px;
 
   &__title {
     margin-right: 16px;
+    @include glass-container;
   }
 
   &__links {
@@ -54,6 +55,10 @@ export default defineComponent({
     @include window-medium {
       padding: 16px;
     }
+  }
+
+  &__icon{
+    color: var(--text-color-strong);
   }
 
   .router-link-active,

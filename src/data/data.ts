@@ -1,4 +1,4 @@
-export const vacationMonths: number[] = [4, 5, 6, 7, 8, 9];
+export const vacationMonths: number[] = [5, 6, 7, 8, 9];
 export const vacationYear: number = 2021;
 export const accumulatedVacationHours = 160;
 export const vacationDayInHours = 7.7;
@@ -11,7 +11,7 @@ export const vacationHolidayDates: string[] = [
   '2021-08-15T00:00:00.000Z',
 ];
 export const vacationDayDates: string[] = [
-  `2021-04-30T00:00:00.000Z`,
+  `2021-05-07T00:00:00.000Z`,
   `2021-05-14T00:00:00.000Z`,
   `2021-05-25T00:00:00.000Z`,
   `2021-06-04T00:00:00.000Z`,

@@ -12,17 +12,17 @@ export const routes: Array<RouteRecordRaw & { icon: string; }> = [
     icon: 'event'
   },
   {
+    path: '/graphs',
+    name: 'Graphs',
+    component: Graphs,
+    icon: 'analytics'
+  },
+  {
     path: '/stats',
     name: 'Stats',
     component: Stats,
     icon: 'feed'
   },
-  {
-    path: '/graphs',
-    name: 'Graphs',
-    component: Graphs,
-    icon: 'analytics'
-  }
 ];
 
 const router = createRouter({

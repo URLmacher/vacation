@@ -6,8 +6,8 @@
       class="calendar__day"
       :class="[
       `calendar__day--${dayOfMonth.dayName}`,
-      `calendar__day--${getHolidayClass(dayOfMonth.momentOfDay)}`,
-      `calendar__day--${getVacationDayClass(dayOfMonth.momentOfDay)}`
+      `calendar__day--${dayOfMonth.isHoliday ? 'is-holiday' : ''}`,
+      `calendar__day--${dayOfMonth.isVacationDay ? 'is-vacation' : ''}`
       ]"
       :key="dayOfMonth.day"
     >
@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts">
-import Moment from 'moment';
 import { DateHelper, IDaysOfMonth } from '@/helpers/DateHelper';
 import { ref, defineComponent, computed, ComputedRef, Ref } from 'vue';
 
@@ -33,23 +32,13 @@ export default defineComponent({
       return dateHelper.getMonthName(props.month);
     });
 
-    const getHolidayClass = (date: Moment.Moment): string => {
-      return dateHelper.isHoliday(date) ? 'is-holiday' : '';
-    };
-
-    const getVacationDayClass = (date: Moment.Moment): string => {
-      return dateHelper.isVacationDay(date) ? 'is-vacation' : '';
-    };
-
     const daysOfMonth: Ref<IDaysOfMonth[]> = ref(
       dateHelper.getMonth(props.month, props.year)
     );
 
     return {
       daysOfMonth,
-      monthName,
-      getHolidayClass,
-      getVacationDayClass
+      monthName
     };
   }
 });

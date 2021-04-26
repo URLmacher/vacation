@@ -1,4 +1,4 @@
-import { vacationHolidayDates, vacationDayDates, vacationMonths, vacationYear } from '@/data/data';
+import { vacationHolidayDates, vacationDayDates } from '@/data/data';
 import Moment from 'moment';
 
 export class DateHelper {
@@ -50,14 +50,6 @@ export class DateHelper {
 
   formatHours(hours: number): string {
     return hours.toString().replace('.', ',');
-  }
-
-  getWholeVacationPeriod(): IDaysOfMonth[][] {
-    const months: IDaysOfMonth[][] = [];
-    for(const vacationMonth of vacationMonths) {
-      months.push(this.getMonth(vacationMonth, vacationYear));
-    }
-    return months;
   }
 
   getVacationDayCount(month: number, year: number): number {

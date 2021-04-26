@@ -5,6 +5,7 @@
 
       <li
         class="link-list__item"
+        @click="openLink(link.linkSrc)"
         v-for="link of smartLinks"
         :key="link.author"
         :href="link.linkSrc"
@@ -27,7 +28,14 @@ import { smartLinks } from '@/data/data';
 
 export default defineComponent({
   setup() {
-    return { smartLinks };
+    const openLink = (url: string): void => {
+      window.open(url, '_blank');
+    };
+
+    return {
+      smartLinks,
+      openLink
+    };
   }
 });
 </script>
@@ -43,13 +51,22 @@ export default defineComponent({
 
   &__list {
     list-style: none;
+    padding: 0;
     margin: 0 auto;
+    cursor: pointer;
   }
 
   &__item {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.2s linear;
+    padding: 8px;
+    border-radius: var(--border-radius);
+
+    &:hover {
+      background-color: var(--glass-alt);
+    }
   }
 
   &__link {
