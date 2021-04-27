@@ -1,6 +1,6 @@
 <template>
   <nav class="nav-bar">
-    <h4 class="nav-bar__title">Proposition Urlaub {{vacationYear}}</h4>
+    <h4 class="nav-bar__title">Urlaub {{vacationYear}}</h4>
     <div class="nav-bar__links">
       <router-link
         class="nav-bar__button"
